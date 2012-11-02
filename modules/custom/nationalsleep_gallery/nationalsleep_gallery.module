@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the nationalsleep_gallery feature.
+ */
+
+include_once 'nationalsleep_gallery.features.inc';
