@@ -10,9 +10,14 @@
 function nationalsleep_global_block_info() {
   $blocks = array();
 
-  // Blank template block.
-  $blocks['blank'] = array(
-    'info' => t('Blank'),
+  // Logo block.
+  $blocks['logo'] = array(
+    'info' => t('Logo'),
+  );
+
+    // Menu block.
+  $blocks['menu'] = array(
+    'info' => t('Menu'),
   );
 
   return $blocks;
@@ -33,14 +38,49 @@ function nationalsleep_global_block_view($delta = ''){
 }
 
 /**
- * Renders the blank block.
+ * Renders the logo block.
  */
-function nationalsleep_global_block_welcome_view() {
+function nationalsleep_global_block_logo_view() {
   $block = array();
   $block['subject'] = '';
 
   $content = '';
-  $content .= '<h2>Blank</h2>';
+  $content .= '<img src="profiles/nationalsleep_profile/themes/custom/nationalsleep_theme/css/img/nsdlogo.png">';
+
+  $block['content'] = $content;
+
+  return $block;
+}
+
+/**
+ * Renders the menu block.
+ */
+function nationalsleep_global_block_menu_view() {
+  $block = array();
+  $block['subject'] = '';
+
+$link_data = array(
+  'About Us'=>'aboutus',
+  'Advisory' => 'advisory',
+  'Recovery & Turnaround' => 'recovery',
+  'Newsletter' => 'news',
+  'Our People' => 'ourpeople',
+  'Contact Us' => 'contactus'
+);
+
+$markup = array();
+
+foreach($link_data as $title => $path){
+  $markup[] = l($title, $path);
+}
+
+$variables = array(
+'type'=>'ul',
+'items'=> $markup
+);
+
+
+  $content = print theme('item_list', $variables);
 
   $block['content'] = $content;
 
